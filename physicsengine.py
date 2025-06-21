@@ -20,9 +20,22 @@ def hesapla(obj1, obj2, dt):
     F = G * obj1.m * obj2.m / r**2
     Fx = F * dx / r
     Fy = F * dy / r
-    if r <= 2*(r1 + r2):
-        obj1.vx = -obj1.vx
-        obj1.vy = -obj1.vy
+    if r <= (r1 + r2):
+        # İki boyutlu elastik çarpışma formülü
+        nx = dx / r
+        ny = dy / r
+        # İki topun hızlarının çarpışma doğrultusundaki bileşenleri
+        p = 2 * (obj1.vx * nx + obj1.vy * ny - obj2.vx * nx - obj2.vy * ny) / (obj1.m + obj2.m)
+        obj1.vx = obj1.vx - p * obj2.m * nx
+        obj1.vy = obj1.vy - p * obj2.m * ny
+        obj2.vx = obj2.vx + p * obj1.m * nx
+        obj2.vy = obj2.vy + p * obj1.m * ny
+        # Topları üst üste binmekten kurtar (opsiyonel)
+        overlap = (r1 + r2) - r
+        obj1.x -= nx * overlap / 2
+        obj1.y -= ny * overlap / 2
+        obj2.x += nx * overlap / 2
+        obj2.y += ny * overlap / 2
         return
     ax1 = Fx / obj1.m
     ay1 = Fy / obj1.m

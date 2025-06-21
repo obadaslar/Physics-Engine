@@ -4,8 +4,8 @@ from constants import *
 
 v = 5e3
 d = 5e11
-m = sm*5e7
-r = 5e8
+m = sm*5e8
+r = 5e10
 cor1 = (0,-d)
 L = 2*d*math.sin(math.pi/6)
 cor2 = (-L,d)
@@ -31,7 +31,7 @@ bodyC = phypy.objcir(
     color = colors["BLUE"]
 )
 bodyD = phypy.objcir(
-    cor = (0,0),
+    cor = cor1,
     mass = m,
     radius = r,
     startvelocity = (0,v/2),

@@ -1,4 +1,4 @@
-#-- Physics Engine -- 
+# Physics Engine 
 
 This is a lightweight physics engine written in Python using custom logic.  
 It includes features like object control, collision handling, and simple simulations.
